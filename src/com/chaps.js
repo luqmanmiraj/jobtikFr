@@ -7,7 +7,8 @@ const mystyle = {
     flexBasis:'100%',
     maxWidth: "100%",
     flexDirection: 'row',
-    flexWrap:'wrap'
+    flexWrap:'wrap',
+    justifyContent:'space-evenly'
      };
     
     //"Hooks":{ title : "" , url : "",  des :" " },
