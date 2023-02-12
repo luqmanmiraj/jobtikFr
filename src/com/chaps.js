@@ -14,14 +14,17 @@ const mystyle = {
     //"Hooks":{ title : "" , url : "",  des :" " },
 export default function Facebook() {
 
-  let k = Object.keys(rt).sort( (a,b)=>(a-b) )
+
+  let k = Object.keys(rt).sort((a,b)=>a.localeCompare(b))
     console.log(rt)
   return (
     <div style = {mystyle}>
       {k.map(v=>(
         <> 
-          <Ch id = "1" name = {v} data = {rt[v]}  />
-
+          <Ch id = "1" name = {v} data = {rt[v]}
+          title={rt[v].title}
+           url={ (rt[v].url).length>1?rt[v].url:"https://docs.google.com/document/d/e/2PACX-1vQ7g4x84LU2rc1o6su8ssSTXCXU2fPo7pguSyBO_QIqI08bcL0sr1FifQlwiepKpuwlPjm_9TL3SpjP/pub?embedded=true"}  />
+          
 
         </>
       ))}
