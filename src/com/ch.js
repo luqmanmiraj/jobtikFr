@@ -74,7 +74,7 @@ const Ch = function (props) {
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
-            <iframe key = {key} width = {1090} height= {1400} src={props.url} title="React Tutorials"></iframe>
+            <iframe key = {key} width = {1090} height= {1100} src={props.url} title="React Tutorials"></iframe>
           </Box>
         </Modal>
         </>
