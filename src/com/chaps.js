@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Ch from './ch';
-import rt from '../Data'
+import rt from '../teks/rt'
 
 const mystyle = {
     display:"flex",

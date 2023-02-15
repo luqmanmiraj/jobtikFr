@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import Youtube from '../com/chaps'
+import Youtube from '../com/chapss'
 
 function Rt(props){
     const el = (<Youtube/>)
