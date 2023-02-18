@@ -27,13 +27,15 @@ const rt = {
     // "storage":{ title : "" , url : "",  des : " " },
     // "Social login":{ title : "" , url : "",  des : " " },
     // "AppSync":{ title : "" , url : "",  des : " " },
-    "w3c compliance": { title: "", url: "https://www.w3.org/standards/about.html", des: " " },
+    "w3c compl": { title: "", url: "https://www.w3.org/standards/about.html", des: " " },
     "cache": { title: "", url: "https://upmostly.com/tutorials/how-to-integrate-cache-in-react-applications", des: " " },
     // "Architecture":{ title : "" , url : "",  des : " " },
+    "webVitals": { title: "", url: "https://moz.com/learn/seo/performance-metrics", des: " " },
+
     "Testing": { title: "", url: "https://reactjs.org/docs/testing.html", des: " " },
     "html/CSS": { title: "", url: "https://htmlcheatsheet.com/css/", des: " " },
-
-    "Material ui": { title: "", url: "file:///G:/vs/xmp/htdocs/jobtik/r/src/teks/mui.html", des: " " },
+    'E2E': { title: 'cypress', url: 'https://docs.cypress.io/guides/end-to-end-testing/writing-your-first-end-to-end-test', des: '' },
+    "Material ui": { title: "", url: "https://luqmanmiraj.github.io/teks/mui.html", des: " " },
     // "CSS moz ":{ title : "" , url : "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flow_Layout/Flow_Layout_and_Writing_Modes",  des : " " },
 
 

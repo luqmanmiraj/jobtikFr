@@ -16,7 +16,7 @@ import Modal from '@mui/material/Modal';
 
 
 const Ch = function (props) {
-  let [width, setWidth] = React.useState(300)
+  let [width, setWidth] = React.useState(180)
   let [height, setHeight] = React.useState(200);
   let [key, setKey] = React.useState(1)
   const [open, setOpen] = React.useState(false);
@@ -29,26 +29,33 @@ const Ch = function (props) {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 1090,
+    width: 1590,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
   };
+  let timer = 0;
+  const TIMEOUT = 1000;
 
-  const mouseEnter = () => {
-    setTimeout(() => {
-      setOpen(true);
-    }, 1000);
-
-
+  function mouseEnter() {
+    timer = setTimeout(() => {
+      setOpen(true)
+    }, TIMEOUT);
   }
+
+  function mouseLeave() {
+    clearTimeout(timer);
+  }
+
+
   return (<>
     <Card onClick={handleOpen}
-      // onMouseOver={() => {  mouseEnter();  }}
+      onMouseEnter={mouseEnter}
+      onMouseLeave={mouseLeave}
       sx={{ minWidth: width, maxWidth: width, m: 2 }}>
 
-      <CardHeader style={{ letterSpacing: '0.05em' }} titleTypographyProps={{ variant: 'h4', color: '#222222', backgroundColor: "", letterSapcing: 5 }} style={{ fontSize: "40px !important" }} title={props.name.charAt(0).toUpperCase() + props.name.slice(1)} />
+      <CardHeader style={{ letterSpacing: '0.07em' }} titleTypographyProps={{ variant: 'h6', color: '#222222', backgroundColor: "", letterSapcing: 5 }} style={{ fontSize: "40px !important" }} title={props.name.charAt(0).toUpperCase() + props.name.slice(1)} />
       <Typography variant="body2" color="text.secondary" component="p">
         {
           props.title
@@ -87,7 +94,7 @@ const Ch = function (props) {
         <IconButton sx={{ m: 1 }} onClick={() => { (setKey(1 + key)) }} aria-label="height">
           <Reset color="info" />
         </IconButton>
-        <iframe key={key} width={1090} height={1100} src={props.url} title="React Tutorials"></iframe>
+        <iframe key={key} width={1390} height={1100} src={props.url} title="React Tutorials"></iframe>
       </Box>
     </Modal>
   </>

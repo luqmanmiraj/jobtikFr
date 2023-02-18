@@ -12,17 +12,27 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+.even{
+  background-color:inherit;
 
+}
+.odd{
+  background-color: #eeeeee;
+
+
+}
 .App-header {
-  background-color: #7a7373;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  height: 100%;;
 }
-
+.css-1oqu9sy-MuiTypography-root{
+  letter-spacing: 0.1em !important;
+}
 .App-link {
   color: #61dafb;
 }
