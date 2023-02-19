@@ -16,5 +16,6 @@ const git = {
     'Networking': { title: '', url: '', des: '' },
     'loging Tools': { title: '', url: '', des: '' },
     'Build Tools': { title: '', url: '', des: '' },
+    'Distributed Comp': { title: '', url: '', des: '' },
 }
 export default git

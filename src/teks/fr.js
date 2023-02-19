@@ -1,8 +1,8 @@
 const fr = {
     "Architecture": { title: "", url: "", des: " " },
     'Web Vitals': { title: '', url: 'https://www.contentkingapp.com/academy/core-web-vitals/#tools', des: '' },
-    'jquery': { title: '', url: '', des: '' },
-    'CSS': { title: '', url: '', des: '' },
+    'jquery CS': { title: '', url: 'https://overapi.com/jquery', des: '' },
+    'CSS CS': { title: '', url: 'https://overapi.com/css', des: '' },
     'HTML': { title: '', url: '', des: '' },
     'sass': { title: '', url: '', des: '' },
     'Tailwind': { title: '', url: '', des: '' },

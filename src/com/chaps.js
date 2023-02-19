@@ -6,6 +6,8 @@ import Chip from '@mui/material/Chip';
 import git from '../teks/devOps'
 import rn from '../teks/rn'
 import fr from '../teks/fr'
+import bk from '../teks/bk'
+import cl from '../teks/cloud';
 
 
 import Divider from '@mui/material/Divider';
@@ -28,6 +30,10 @@ export default function Facebook() {
   let g = Object.keys(git).sort((a, b) => a.localeCompare(b))
   let n = Object.keys(rn).sort((a, b) => a.localeCompare(b))
   let f = Object.keys(fr).sort((a, b) => a.localeCompare(b))
+  let b = Object.keys(bk).sort((a, b) => a.localeCompare(b))
+  let c = Object.keys(cl).sort((a, b) => a.localeCompare(b))
+
+
 
 
 
@@ -66,9 +72,20 @@ export default function Facebook() {
       <div className={"odd"} style={mystyle}>{n.map((v, i) => (
         <><Ch id={'k' + i} name={v} data={rn[v]} url={rn[v].url} /></>))}</div>
 
+
+      <Divider sx={{ borderColor: 'white', width: '100%' }} light={false} variant="middle" > <Chip sx={{ coloe: 'white' }} label="Back End" /> </Divider>
+      <div className={"even"} style={mystyle}>{b.map((v, i) => (
+        <><Ch id={'k' + i} name={v} data={bk[v]} url={bk[v].url} /></>))}</div>
+
+
       <Divider sx={{ borderColor: 'white', width: '100%' }} light={false} variant="middle" > <Chip sx={{ coloe: 'white' }} label="DevOps" /> </Divider>
       <div className={"even"} style={mystyle}>{g.map((v, i) => (
         <><Ch id={'k' + i} name={v} data={git[v]} url={git[v].url} /></>))}</div>
+
+
+      <Divider sx={{ borderColor: 'white', width: '100%' }} light={false} variant="middle" > <Chip sx={{ coloe: 'white' }} label="Cloud" /> </Divider>
+      <div className={"even"} style={mystyle}>{c.map((v, i) => (
+        <><Ch id={'k' + i} name={v} data={cl[v]} url={cl[v].url} /></>))}</div>
 
     </>
   );

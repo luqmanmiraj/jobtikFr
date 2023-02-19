@@ -1,0 +1,31 @@
+const cl = {
+    'cloudWatch': { title: '', url: 'https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html', des: '' },
+    'DynamoDB': { title: '', url: 'https://docs.aws.amazon.com/dynamodb/?icmpid=docs_homepage_featuredsvcs', des: '' },
+    'Ec2': { title: '', url: 'https://docs.aws.amazon.com/ec2/?icmpid=docs_homepage_featuredsvcs', des: '' },
+    'VPC': { title: '', url: 'https://docs.aws.amazon.com/vpc/?icmpid=docs_homepage_featuredsvcs', des: '' },
+    'AWS Lambda': { title: '', url: 'https://docs.aws.amazon.com/lambda/?icmpid=docs_homepage_featuredsvcs', des: '' },
+    'lightSail': { title: '', url: 'https://docs.aws.amazon.com/lightsail/?icmpid=docs_homepage_featuredsvcs', des: '' },
+    'SageMaker': { title: '', url: 'https://docs.aws.amazon.com/sagemaker/?icmpid=docs_homepage_featuredsvcs', des: '' },
+    'RDS': { title: '', url: 'https://docs.aws.amazon.com/rds/?icmpid=docs_homepage_featuredsvcs', des: '' },
+    'Aurora': { title: '', url: 'https://docs.aws.amazon.com/rds/?icmpid=docs_homepage_featuredsvcs', des: '' },
+    'S3': { title: '', url: 'https://docs.aws.amazon.com/s3/?icmpid=docs_homepage_featuredsvcs', des: '' },
+    'Steps Fn': { title: '', url: 'https://docs.aws.amazon.com/step-functions/?icmpid=docs_homepage_serverless', des: '' },
+    'AppSync': { title: '', url: 'https://docs.aws.amazon.com/appsync/?icmpid=docs_homepage_serverless', des: '' },
+    'fargate': { title: '', url: 'https://docs.aws.amazon.com/ecs/?icmpid=docs_homepage_serverless', des: '' },
+    'Amplify': { title: '', url: 'https://docs.aws.amazon.com/amplify/?icmpid=docs_homepage_fewebmobile', des: '' },
+    'SNS': { title: '', url: 'https://docs.aws.amazon.com/sns/?icmpid=docs_homepage_appintegration', des: '' },
+    'SQS': { title: '', url: 'https://docs.aws.amazon.com/sqs/?icmpid=docs_homepage_appintegration', des: '' },
+    'API Gateway': { title: '', url: '', des: '' },
+    'Event Bridge': { title: '', url: '', des: '' },
+    'IAM': { title: '', url: '', des: '' },
+    'CloudFormation': { title: '', url: '', des: '' },
+    'Incognito': { title: '', url: '', des: '' },
+    'Chime': { title: '', url: '', des: '' },
+    'CloudFront': { title: '', url: 'https://docs.aws.amazon.com/cloudfront/?icmpid=docs_homepage_networking', des: '' },
+    'Cache': { title: '', url: '', des: '' },
+    'SDK': { title: '', url: '', des: '' },
+    'Route53': { title: '', url: '', des: '' },
+
+
+}
+export default cl
