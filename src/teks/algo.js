@@ -1,6 +1,9 @@
 const algo = {
 
-    'String': { title: '', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String', des: '' },
+    'String': {
+        title: '', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String', des: '',
+        type: 'topics', topics: ['concat, slice, charAt,charCodeAt']
+    },
     'Arrays': { title: '', url: '', des: '' },
     'Map': { title: '', url: '', des: '' },
     'Object': { title: '', url: '', des: '' },

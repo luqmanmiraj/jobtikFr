@@ -8,6 +8,7 @@ import rn from '../teks/rn'
 import fr from '../teks/fr'
 import bk from '../teks/bk'
 import cl from '../teks/cloud';
+import db from '../teks/db'
 
 
 import Divider from '@mui/material/Divider';
@@ -32,6 +33,8 @@ export default function Facebook() {
   let f = Object.keys(fr).sort((a, b) => a.localeCompare(b))
   let b = Object.keys(bk).sort((a, b) => a.localeCompare(b))
   let c = Object.keys(cl).sort((a, b) => a.localeCompare(b))
+  let d = Object.keys(db).sort((a, b) => a.localeCompare(b))
+
 
 
 
@@ -50,6 +53,7 @@ export default function Facebook() {
           <>
             <Ch id={'j' + i} name={v} data={rt[v]}
               title={js[v].title}
+              type={js[v].type == 'topics' ? 'topics' : 'iframe'}
               url={(js[v].url).length > 1 ? js[v].url : "https://docs.google.com/document/d/e/2PACX-1vQ7g4x84LU2rc1o6su8ssSTXCXU2fPo7pguSyBO_QIqI08bcL0sr1FifQlwiepKpuwlPjm_9TL3SpjP/pub?embedded=true"} />
 
           </>
@@ -86,6 +90,10 @@ export default function Facebook() {
       <Divider sx={{ borderColor: 'white', width: '100%' }} light={false} variant="middle" > <Chip sx={{ coloe: 'white' }} label="Cloud" /> </Divider>
       <div className={"even"} style={mystyle}>{c.map((v, i) => (
         <><Ch id={'k' + i} name={v} data={cl[v]} url={cl[v].url} /></>))}</div>
+
+      <Divider sx={{ borderColor: 'white', width: '100%' }} light={false} variant="middle" > <Chip sx={{ coloe: 'white' }} label="DB" /> </Divider>
+      <div className={"even"} style={mystyle}>{d.map((v, i) => (
+        <><Ch id={'k' + i} name={v} data={db[v]} url={db[v].url} /></>))}</div>
 
     </>
   );
