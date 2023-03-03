@@ -9,9 +9,11 @@ import fr from '../teks/fr'
 import bk from '../teks/bk'
 import cl from '../teks/cloud';
 import db from '../teks/db'
+import Dividr from './divider';
 
 
 import Divider from '@mui/material/Divider';
+import { useSlotProps } from '@mui/base';
 
 
 const mystyle = {
@@ -45,15 +47,14 @@ export default function Facebook() {
   // console.log(rt)
   return (
     <>
-      <Divider sx={{ borderColor: 'white', width: '100%' }} light={false} variant="middle" > <Chip sx={{ coloe: 'white' }} label="Algos" /> </Divider>
-
+      <Dividr name="algo" />
       <div className={"even"} style={mystyle}>
-
         {j.map((v, i) => (
           <>
             <Ch id={'j' + i} name={v} data={rt[v]}
               title={js[v].title}
               type={js[v].type == 'topics' ? 'topics' : 'iframe'}
+              topics={js[v].topics}
               url={(js[v].url).length > 1 ? js[v].url : "https://docs.google.com/document/d/e/2PACX-1vQ7g4x84LU2rc1o6su8ssSTXCXU2fPo7pguSyBO_QIqI08bcL0sr1FifQlwiepKpuwlPjm_9TL3SpjP/pub?embedded=true"} />
 
           </>
@@ -61,37 +62,32 @@ export default function Facebook() {
       </div>
 
 
-      <Divider sx={{ borderColor: 'white', width: '100%' }} light={false} variant="middle" > <Chip sx={{ coloe: 'white' }} label="React" /> </Divider>
+      <Dividr name="React" />
       <div className={"odd"} style={mystyle}>{k.map((v, i) => (
         <><Ch id={'k' + i} name={v} data={rt[v]} url={rt[v].url} /></>))}</div>
 
 
-
-      <Divider sx={{ borderColor: 'white', width: '100%' }} light={false} variant="middle" > <Chip sx={{ coloe: 'white' }} label="Front End" /> </Divider>
+      <Dividr name="Front-End" />
       <div className={"even"} style={mystyle}>{f.map((v, i) => (
         <><Ch id={'k' + i} name={v} data={fr[v]} url={fr[v].url} /></>))}</div>
 
-
-      <Divider sx={{ borderColor: 'white', width: '100%' }} light={false} variant="middle" > <Chip sx={{ coloe: 'white' }} label="React Native" /> </Divider>
+      <Dividr name="ReactNative" />
       <div className={"odd"} style={mystyle}>{n.map((v, i) => (
         <><Ch id={'k' + i} name={v} data={rn[v]} url={rn[v].url} /></>))}</div>
 
-
-      <Divider sx={{ borderColor: 'white', width: '100%' }} light={false} variant="middle" > <Chip sx={{ coloe: 'white' }} label="Back End" /> </Divider>
+      <Dividr name="BackEnd" />
       <div className={"even"} style={mystyle}>{b.map((v, i) => (
         <><Ch id={'k' + i} name={v} data={bk[v]} url={bk[v].url} /></>))}</div>
 
-
-      <Divider sx={{ borderColor: 'white', width: '100%' }} light={false} variant="middle" > <Chip sx={{ coloe: 'white' }} label="DevOps" /> </Divider>
+      <Dividr name="DevOps" />
       <div className={"even"} style={mystyle}>{g.map((v, i) => (
         <><Ch id={'k' + i} name={v} data={git[v]} url={git[v].url} /></>))}</div>
 
-
-      <Divider sx={{ borderColor: 'white', width: '100%' }} light={false} variant="middle" > <Chip sx={{ coloe: 'white' }} label="Cloud" /> </Divider>
+      <Dividr name="Cloud" />
       <div className={"even"} style={mystyle}>{c.map((v, i) => (
         <><Ch id={'k' + i} name={v} data={cl[v]} url={cl[v].url} /></>))}</div>
 
-      <Divider sx={{ borderColor: 'white', width: '100%' }} light={false} variant="middle" > <Chip sx={{ coloe: 'white' }} label="DB" /> </Divider>
+      <Dividr name="DB" />
       <div className={"even"} style={mystyle}>{d.map((v, i) => (
         <><Ch id={'k' + i} name={v} data={db[v]} url={db[v].url} /></>))}</div>
 

@@ -2,9 +2,25 @@ const algo = {
 
     'String': {
         title: '', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String', des: '',
-        type: 'topics', topics: ['concat, slice, charAt,charCodeAt']
+
     },
-    'Arrays': { title: '', url: '', des: '' },
+    'Arrays': {
+        title: '', url: 'https://luqmanmiraj.github.io/teks/arraysMoz.html',
+        type: 'topics',
+        topics: [
+            {
+                cat: 'Make/change', val: ['Array.from', 'spread', 'fill', 'flat', 'sort', 'splice',
+                    'copywithin', 'Object.keys(ob)', 'Object.values()', 'concat', 'clone', 'reverse',
+                    ''
+                ]
+            },
+            { cat: 'iterations', val: ['concat', 'slice', 'charAt', ''] },
+            // { cat: '', val: ['concat', 'slice', 'charAt', ''] },
+
+            { cat: 'cuustom', val: ['concat', 'slice', 'charAt', 'charCodeAt'] },
+        ],
+        des: ''
+    },
     'Map': { title: '', url: '', des: '' },
     'Object': { title: '', url: '', des: '' },
     'Set': { title: '', url: '', des: '' },

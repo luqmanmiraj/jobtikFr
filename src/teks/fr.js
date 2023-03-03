@@ -4,6 +4,8 @@ const fr = {
     'jquery CS': { title: '', url: 'https://overapi.com/jquery', des: '' },
     'CSS CS': { title: '', url: 'https://overapi.com/css', des: '' },
     'HTML': { title: '', url: '', des: '' },
+    'HTML Edit': { title: '', url: 'https://wordtohtml.net/html-editor-online', des: '' },
+
     'sass': { title: '', url: '', des: '' },
     'Tailwind': { title: '', url: '', des: '' },
     'BootStrap': { title: '', url: '', des: '' },
