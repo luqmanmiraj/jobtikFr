@@ -8,7 +8,8 @@ import rn from '../teks/rn'
 import fr from '../teks/fr'
 import bk from '../teks/bk'
 import cl from '../teks/cloud';
-import db from '../teks/db'
+import db from '../teks/db';
+import ts from '../teks/ts';
 import Dividr from './divider';
 
 
@@ -36,6 +37,8 @@ export default function Facebook() {
   let b = Object.keys(bk).sort((a, b) => a.localeCompare(b))
   let c = Object.keys(cl).sort((a, b) => a.localeCompare(b))
   let d = Object.keys(db).sort((a, b) => a.localeCompare(b))
+  let t = Object.keys(ts).sort((a, b) => a.localeCompare(b))
+
 
 
 
@@ -61,6 +64,9 @@ export default function Facebook() {
         ))}
       </div>
 
+      <Dividr name="TS" />
+      <div className={"odd"} style={mystyle}>{t.map((v, i) => (
+        <><Ch id={'k' + i} name={v} data={ts[v]} url={ts[v].url} /></>))}</div>
 
       <Dividr name="React" />
       <div className={"odd"} style={mystyle}>{k.map((v, i) => (

@@ -6,19 +6,68 @@ import CardHeader from '@mui/material/CardHeader';
 import Card from '@mui/material/Card';
 import topics from '../topics/topics'
 import Exapnd from '@mui/icons-material/OpenInBrowserOutlined';
+import Edit from '@mui/icons-material/Edit';
+import Save from '@mui/icons-material/Save';
+
+import Editor from './editor'
+
+
+import axios from 'axios';
 
 export default function BasicPopover(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [showEditor, setShowEditor] = React.useState(false)
+    const [content, setContent] = React.useState('Content');
+    const [updateID, setUpdateID] = React.useState(0);
+
+
     // const [open, setOpen] = react.useState(false)
+
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
+        axios
+            .get("http://localhost:8080/api/tutorials?title=" + props.val)
+            .then(response => {
+                console.log(response.data);
+                setContent(response.data[0].html)
+                setUpdateID(response.data[0].id ? response.data[0].id : 0)
+
+                // Handle response
+            })
     };
 
     const handleClose = () => {
         setAnchorEl(null);
     };
+    const save = () => {
+        let pdata = {
+            "title": props.val,
+            "description": "Description",
+            "html": content,
+            "published": "true"
+        }
+        if (updateID > 0) {
+            axios
+                .put("http://localhost:8080/api/tutorials/" + updateID, pdata)
+                .then(response => {
+                    console.log(response.data);
+                    // setContent(response.data.html)
+                })
+        } else {
+            axios
+                .post("http://localhost:8080/api/tutorials?title=" + props.val, pdata)
+                .then(response => {
+                    console.log(response.data);
+                    // setContent(response.data.html)
+                    setUpdateID(response.data.id ? response.data.id : 0)
 
+
+                })
+        }
+
+
+    };
     let timer = 0;
     const TIMEOUT = 1000;
     function mouseEnter(e) {
@@ -41,7 +90,6 @@ export default function BasicPopover(props) {
         let nStr = p;
         specialChars.map(v => {
             nStr = nStr.replace((new RegExp('[' + v + ']', 'gi')), "[" + v + "]")
-            console.log(nStr);
         })
         return Str?.replace((new RegExp(nStr, 'gi')), "<span style = 'color:#FF643c'>" + p + "</span>")
     }
@@ -90,18 +138,32 @@ export default function BasicPopover(props) {
                 <Exapnd color="info" />
             </a>
                 </Button>
-                <Typography sx={{ p: 2, letterSpacing: '0.07em', wordSpacing: '0.05em' }}>
+                <Button onClick={() => { setShowEditor(true) }}>
+                    <Edit color="info" />
 
-                    <div dangerouslySetInnerHTML={{
-                        __html:
-                            //  (topics[p][v])?.replace('Example:', "<span style = 'color:#FF643c'>Example</span>")
-                            highlight(topics[p][v], search)
+                </Button>
+                <Button onClick={() => { save(); }}>
+                    <Save color="info" />
 
-                    }}></div>
+                </Button>
 
-                    {/* {topics.ptname.val} */}
-                </Typography>
+                {showEditor ? <Editor name="Editor" defaultvalue={content ? content : 'default value'} onChange={(data) => setContent(data)} /> : <>
+                    <Typography sx={{ p: 2, letterSpacing: '0.07em', wordSpacing: '0.05em' }}>
+
+                        <div dangerouslySetInnerHTML={{
+                            __html:
+                                //  (topics[p][v])?.replace('Example:', "<span style = 'color:#FF643c'>Example</span>")
+                                // highlight(topics[p][v], search)
+                                highlight(content, search)
+
+
+                        }}></div>
+
+                        {/* {topics.ptname.val} */}
+                    </Typography>
+                </>}
             </Popover>
+
         </>
     );
 }

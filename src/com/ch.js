@@ -12,7 +12,6 @@ import Button from '@mui/material/Button';
 
 import Topics from './topics'
 const Ch = function (props) {
-  console.log(props)
   let [width, setWidth] = React.useState(180)
   let [iwidth, setIwidth] = React.useState(1190)
 
