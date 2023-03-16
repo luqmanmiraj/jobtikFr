@@ -22,29 +22,29 @@ code {
     monospace;
 }
 .section::-webkit-scrollbar-thumb {
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 4px rgba(242, 6, 6, 0.3);
 }.section {
-  scrollbar-width: thin;
+  scrollbar-width: 2px;
 }
 .section {
-  scrollbar-color: #6969dd #e0e0e0;
+  scrollbar-color: #0c0cc1 #4e4e4e;
   scrollbar-width: thin;
 }
 /* width */
 ::-webkit-scrollbar {
-  width: 20px;
+  width: 10px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
-  border-radius: 10px;
+  box-shadow: inset 0 0 10px rgb(145, 147, 142); 
+  border-radius: 0px;
 }
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgb(133, 103, 103); 
-  border-radius: 10px;
+  background: rgb(42, 42, 42); 
+  border-radius: 5px;
 }
 
 /* Handle on hover */

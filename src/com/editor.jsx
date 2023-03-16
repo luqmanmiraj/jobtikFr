@@ -13,7 +13,7 @@ import { useSlotProps } from '@mui/base'
 const Editor = ({ name, onChange, defaultvalue, props }) => {
     const options = {
         plugins: plugins,
-        height: 250,
+        height: 850,
         codeMirror: {
             src: CodeMirror,
             options: {
@@ -125,7 +125,7 @@ const Editor = ({ name, onChange, defaultvalue, props }) => {
             placeholder="Please type here..."
             name={name}
             lang="en"
-            setDefaultStyle="font-family: Arial; font-size: 14px;"
+            setDefaultStyle="font-family: Arial; font-size: 14px; min-height:670px; margin-left:auto;margin-right:auto"
             setOptions={options}
             // onImageUpload={onImageUpload}
             onImageUploadBefore={handleImageUploadBefore}

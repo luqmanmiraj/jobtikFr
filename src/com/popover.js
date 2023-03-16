@@ -8,6 +8,7 @@ import topics from '../topics/topics'
 import Exapnd from '@mui/icons-material/OpenInBrowserOutlined';
 import Edit from '@mui/icons-material/Edit';
 import Save from '@mui/icons-material/Save';
+import { Modal } from '@mui/material';
 
 import Editor from './editor'
 
@@ -19,12 +20,15 @@ export default function BasicPopover(props) {
     const [showEditor, setShowEditor] = React.useState(false)
     const [content, setContent] = React.useState('Content');
     const [updateID, setUpdateID] = React.useState(0);
+    const [showModal, setShowModal] = React.useState(false);
+
 
 
     // const [open, setOpen] = react.useState(false)
 
 
     const handleClick = (event) => {
+        setShowModal(true)
         setAnchorEl(event.currentTarget);
         axios
             .get("http://localhost:8080/api/tutorials?title=" + props.val)
@@ -39,6 +43,9 @@ export default function BasicPopover(props) {
 
     const handleClose = () => {
         setAnchorEl(null);
+    };
+    const handleCloseM = () => {
+        setShowModal(false);
     };
     const save = () => {
         let pdata = {
@@ -65,6 +72,8 @@ export default function BasicPopover(props) {
 
                 })
         }
+
+        setShowEditor(false)
 
 
     };
@@ -119,36 +128,34 @@ export default function BasicPopover(props) {
                     title={props.val.charAt(0).toUpperCase() + props.val.slice(1)} />
 
             </Card>
+
             <Popover
-                sx={{ p: 2 }}
+                sx={{ p: 2, minWidth: '500px !important', maxWidth: '800px !important', marginLeft: 'auto ', marginRight: 'auto', top: '150px', backgroundColor: '#444', maxHeight: '780px' }}
                 id={id}
                 open={open}
-                anchorEl={anchorEl}
                 onClose={handleClose}
-                anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
-                }}
-            >          <Button ><a
-                href={topics[p]['url']}
-                target="_blank"
-                rel="noreferrer"
-                style={{ marginTop: 2 }}
+
             >
-                <Exapnd color="info" />
-            </a>
+                <Button ><a
+                    href={topics[p]['url']}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ marginTop: 2 }}
+                >
+                    <Exapnd color="info" />
+                </a>
                 </Button>
                 <Button onClick={() => { setShowEditor(true) }}>
                     <Edit color="info" />
 
                 </Button>
-                <Button onClick={() => { save(); }}>
+                <Button onClick={() => { save(); setShowEditor(false) }}>
                     <Save color="info" />
 
                 </Button>
 
                 {showEditor ? <Editor name="Editor" defaultvalue={content ? content : 'default value'} onChange={(data) => setContent(data)} /> : <>
-                    <Typography sx={{ p: 2, letterSpacing: '0.07em', wordSpacing: '0.05em' }}>
+                    <Typography sx={{ p: 2, letterSpacing: '0.07em', wordSpacing: '0.05em', minHeight: '700px', minWidth: '800px' }}>
 
                         <div dangerouslySetInnerHTML={{
                             __html:
@@ -163,6 +170,8 @@ export default function BasicPopover(props) {
                     </Typography>
                 </>}
             </Popover>
+
+
 
         </>
     );
