@@ -5,11 +5,11 @@ import Typography from '@mui/material/Typography';
 import Popover from '@mui/material/Popover';
 import Chip from '@mui/material/Chip';
 import Reset from '@mui/icons-material/MinimizeRounded';
-import Exapnd from '@mui/icons-material/Expand';
+import Exapnd from '@mui/icons-material/NorthWest';
 import Gpt from '@mui/icons-material/SearchRounded';
 import Google from '@mui/icons-material/Google';
 import TextField from '@mui/material/TextField';
-import Widen from '@mui/icons-material/WidthFull';
+// import Widen from '@mui/icons-material/';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import Chipss from './chips';
 import Paper from '@mui/material/Paper';
@@ -41,6 +41,8 @@ export default function BasicModal(props) {
     let [topicContent, setTopicContent] = React.useState([]);
     let [chgp, setChgp] = React.useState('');
     let [goo, setGoo] = React.useState('');
+    let [minmized, setMinmized] = React.useState(false);
+
 
 
 
@@ -65,10 +67,12 @@ export default function BasicModal(props) {
         boxShadow: 24,
         p: 1,
         height: height,
-        maxHeight: 1500,
-        overflowY: overf,
+        maxHeight: '90%',
+        maxWidth: '90%',
+        overflow: overf,
         zIndex: 6666,
-        transition: '300ms'
+        transition: '300ms',
+        marginTop: '10px'
     };
 
     const findcolor = (v) => {
@@ -82,6 +86,9 @@ export default function BasicModal(props) {
 
 
         console.log('google resulr')
+        setGoo('')
+        setTopicContent('')
+        setChgp(' ')
 
         axios
             .get("http://localhost:8080/api/chat/google?query=" + q, { query: q })
@@ -142,10 +149,13 @@ export default function BasicModal(props) {
             <Box
                 sx={style}
             >
-                <Button onClick={() => { setHeight(height + 700); setWidth(width > 600 ? width : 700); setOverf('scroll'); SetShowSearchButtons(true) }}><Exapnd /></Button>
-                <Button sx={{ paddingBottom: 3, width: '50px' }} onClick={() => { setWidth(200); setHeight(40); setOverf('hidden'); SetShowSearchButtons(false) }}><Reset /></Button>
-                <Button onClick={() => { setWidth(width + 500) }}><Widen /></Button>
-
+                <Button sx={{ position: 'absolute', left: '0px', top: minmized ? '5px' : '20px' }} onClick={() => { setHeight(height + 700); setWidth(width + 600); setOverf('scroll'); SetShowSearchButtons(true) }}><Exapnd /></Button>
+                {/* {minmized && <Button sx={{ paddingBottom: 1, width: '50px', position: 'absolute', left: '40px', top: minmized ? '0px' : '10px' }} onClick={() => { setWidth(100); setHeight(30); setOverf('hidden'); SetShowSearchButtons(false); setMinmized(true) }}><Reset /></Button>} */}
+                {/* <Button onClick={() => { setWidth(width + 500) }}><Widen /></Button> */}
+                {searchButtons && (<>
+                    <Button sx={{ paddingBottom: 1, width: '50px', position: 'absolute', left: '40px', top: minmized ? '0px' : '10px' }} onClick={() => { setWidth(60); setHeight(30); setOverf('hidden'); SetShowSearchButtons(false); setMinmized(true) }}><Reset /></Button>
+                    <Button sx={{ position: 'absolute', right: '20px', top: '20px' }} onClick={() => { setWidth(width + 500) }}><Gpt /></Button>
+                    <Button sx={{ position: 'absolute', right: '80px', top: '20px' }} onClick={() => { setWidth(width + 500) }}><Google /></Button></>)}
                 <TextareaAutosize
                     onChange={(e) => {
                         setWords(Array.from(new Set(e.target.value.split(' '))))
@@ -154,9 +164,9 @@ export default function BasicModal(props) {
                     minRows={2}
                     maxRows={7}
                     placeholder="Speech text"
-                    style={{ width: '100%', fontSize: '20px', letterSpacing: '0.06em' }}
+                    style={{ width: width - 40, fontSize: '20px', letterSpacing: '0.06em', marginTop: '60px', paddingLeft: '10px', paddingTop: '5px' }}
                 />
-                <Typography id="modal-modal-title" variant="h6" component="h2">
+                <Typography sx={{ color: '#333' }} id="modal-modal-title" variant="h6" component="h1">
                     Search keywords
                 </Typography>
                 <Box>
@@ -199,7 +209,9 @@ export default function BasicModal(props) {
                         sx={{ ml: 1, flex: 1 }}
                         placeholder="Query"
                         inputProps={{ 'aria-label': 'Query' }}
-                        onChange={(e) => { setQuery(e.target.value) }} value={query}
+                        onChange={(e) => { setQuery(e.target.value) }}
+                        value={query}
+                        onKeyPress={(e) => { if (e.key === 'enter') { e.preventDefault(); e.stopPropagation(); search(query); } }}
                     />
                     <IconButton onClick={() => { search(query) }} type="button" sx={{ p: '10px' }} aria-label="search">
                         <SearchIcon />
@@ -210,18 +222,13 @@ export default function BasicModal(props) {
                     </IconButton>
                 </Paper>
                 {topicContent.length >= 1 ? <Topics tar={topicContent} /> : <></>}
+                {goo.length >= 2 ? <Goo goo={goo} /> : <></>}
 
                 {chgp.length >= 2 ? <Chgpt gpt={chgp} /> : <></>}
-                {goo.length >= 2 ? <Goo goo={goo} /> : <></>}
 
 
                 {/* <TextField onChange={(e) => { setQuery(e.target.value) }} value={query} fullWidth label="Query" id="fullWidth" /> */}
-                {searchButtons && (<>
-                    <Button sx={{ position: 'absolute', right: '40px', bottom: '10px' }} onClick={() => { setWidth(width + 500) }}><Gpt /></Button>
-                    <Button sx={{ position: 'absolute', right: '100px', bottom: '10px' }} onClick={() => { setWidth(width + 500) }}><Google /></Button></>)}
-
-
-                {/* <iframe key={key} width={width} height={height} src={props.url} title="React Tutorials"></iframe> */}
+                {/* <iframe key={key} width={width} height={height} src={'https://chat.openai.com/chat/07ba80aa-ad8d-4415-845f-b106ebb72b17'} title="React Tutorials"></iframe> */}
             </Box>
             {/* </Popover> */}
         </div>

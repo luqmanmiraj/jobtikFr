@@ -54,7 +54,8 @@ export default function Facebook() {
       <div className={"even"} style={mystyle}>
         {j.map((v, i) => (
           <>
-            <Ch id={'j' + i} name={v} data={rt[v]}
+            <Ch id={'j' + i} name={v}
+              data={rt[v]}
               title={js[v].title}
               type={js[v].type == 'topics' ? 'topics' : 'iframe'}
               topics={js[v].topics}
@@ -95,7 +96,14 @@ export default function Facebook() {
 
       <Dividr name="DB" />
       <div className={"even"} style={mystyle}>{d.map((v, i) => (
-        <><Ch id={'k' + i} name={v} data={db[v]} url={db[v].url} /></>))}</div>
+        <><Ch id={'k' + i} name={v} data={db[v]} url={db[v].url}
+          data={db[v]}
+          title={db[v].title}
+          type={db[v].type == 'topics' ? 'topics' : 'iframe'}
+          topics={db[v].topics}
+
+
+        /></>))}</div>
 
     </>
   );

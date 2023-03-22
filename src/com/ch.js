@@ -38,7 +38,7 @@ const Ch = function (props) {
 
   function mouseEnter() {
     timer = setTimeout(() => {
-      setOpen(true)
+      setOpen(true);
     }, TIMEOUT);
   }
 
@@ -55,7 +55,7 @@ const Ch = function (props) {
     <Card onClick={handleOpen}
       onMouseEnter={mouseEnter}
       onMouseLeave={mouseLeave}
-      sx={{ minWidth: width, maxWidth: width, m: 2 }}>
+      sx={{ minWidth: width, maxWidth: width, m: 1 }}>
 
       <CardHeader style={{
         letterSpacing: '0.07em'
@@ -65,8 +65,10 @@ const Ch = function (props) {
           props.title
         }
       </Typography>
+
     </Card>
     <Modal
+      // sx={{ position: 'absolute', width: '800px', top: '100px' }}
       open={open}
       onClose={handleClose}
       aria-labelledby="modal-modal-title"

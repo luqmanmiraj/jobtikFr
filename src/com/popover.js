@@ -136,7 +136,7 @@ export default function BasicPopover(props) {
                 onClose={handleClose}
 
             >
-                <Button ><a
+                {/* <Button ><a
                     href={topics[p]['url']}
                     target="_blank"
                     rel="noreferrer"
@@ -144,7 +144,7 @@ export default function BasicPopover(props) {
                 >
                     <Exapnd color="info" />
                 </a>
-                </Button>
+                </Button> */}
                 <Button onClick={() => { setShowEditor(true) }}>
                     <Edit color="info" />
 
