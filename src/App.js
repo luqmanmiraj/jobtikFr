@@ -9,10 +9,12 @@ function App() {
     <div className="App">
 
       <header className="App-header">
+
         <Rt />
-        <Dictaphone />
 
       </header>
+      <Dictaphone />
+
     </div>
   );
 }

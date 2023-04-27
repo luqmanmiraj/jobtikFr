@@ -4,7 +4,6 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import CardHeader from '@mui/material/CardHeader';
 import Card from '@mui/material/Card';
-import topics from '../topics/topics'
 import Exapnd from '@mui/icons-material/OpenInBrowserOutlined';
 import Edit from '@mui/icons-material/Edit';
 import Save from '@mui/icons-material/Save';
@@ -136,15 +135,7 @@ export default function BasicPopover(props) {
                 onClose={handleClose}
 
             >
-                {/* <Button ><a
-                    href={topics[p]['url']}
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{ marginTop: 2 }}
-                >
-                    <Exapnd color="info" />
-                </a>
-                </Button> */}
+
                 <Button onClick={() => { setShowEditor(true) }}>
                     <Edit color="info" />
 
@@ -159,8 +150,7 @@ export default function BasicPopover(props) {
 
                         <div dangerouslySetInnerHTML={{
                             __html:
-                                //  (topics[p][v])?.replace('Example:', "<span style = 'color:#FF643c'>Example</span>")
-                                // highlight(topics[p][v], search)
+
                                 highlight(content, search)
 
 

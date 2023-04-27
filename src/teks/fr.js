@@ -5,6 +5,8 @@ const fr = {
     'CSS CS': { title: '', url: 'https://overapi.com/css', des: '' },
     'HTML': { title: '', url: '', des: '' },
     'HTML Edit': { title: '', url: 'https://wordtohtml.net/html-editor-online', des: '' },
+    "w3c compl": { title: "", url: "https://www.w3.org/standards/about.html", des: " " },
+    "html/CSS": { title: "", url: "https://htmlcheatsheet.com/css/", des: " " },
 
     'sass': { title: '', url: '', des: '' },
     'Tailwind': { title: '', url: '', des: '' },
@@ -13,9 +15,11 @@ const fr = {
     'Vue': { title: '', url: '', des: '' },
     'Angular': { title: '', url: '', des: '' },
     'Bundler': { title: '', url: '', des: '' },
-    'w3c': { title: '', url: '', des: '' },
     'web3': { title: '', url: '', des: '' },
     'Tools': { title: '', url: '', des: '' },
+    "flexbox": { title: "", url: "https://css-tricks.com/snippets/css/a-guide-to-flexbox/", des: " " },
+
+    'E2E': { title: 'cypress', url: 'https://docs.cypress.io/guides/end-to-end-testing/writing-your-first-end-to-end-test', des: '' },
 
 }
 

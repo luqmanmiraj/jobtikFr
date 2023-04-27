@@ -71,7 +71,14 @@ export default function Facebook() {
 
       <Dividr name="React" />
       <div className={"odd"} style={mystyle}>{k.map((v, i) => (
-        <><Ch id={'k' + i} name={v} data={rt[v]} url={rt[v].url} /></>))}</div>
+
+        <><Ch id={'k' + i} name={v}
+          // data={rt[v]}
+          title={rt[v].title}
+          type={rt[v].type == 'topics' ? 'topics' : 'iframe'}
+          topics={rt[v].topics}
+          // data={rt[v]}
+          url={rt[v].url} /></>))}</div>
 
 
       <Dividr name="Front-End" />
