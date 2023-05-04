@@ -29,6 +29,8 @@ export default function BasicPopover(props) {
     const handleClick = (event) => {
         setShowModal(true)
         setAnchorEl(event.currentTarget);
+        console.log("propssss")
+        console.log(props)
         axios
             .get("http://localhost:8080/api/tutorials?title=" + props.val)
             .then(response => {
@@ -51,7 +53,9 @@ export default function BasicPopover(props) {
             "title": props.val,
             "description": "Description",
             "html": content,
-            "published": "true"
+            "published": "true",
+            "tech": props.tech,
+            "parent": props.ptname
         }
         if (updateID > 0) {
             axios

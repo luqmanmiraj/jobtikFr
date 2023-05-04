@@ -55,6 +55,7 @@ export default function Facebook() {
         {j.map((v, i) => (
           <>
             <Ch id={'j' + i} name={v}
+              tech="Algo"
               data={rt[v]}
               title={js[v].title}
               type={js[v].type == 'topics' ? 'topics' : 'iframe'}
@@ -67,13 +68,14 @@ export default function Facebook() {
 
       <Dividr name="TS" />
       <div className={"odd"} style={mystyle}>{t.map((v, i) => (
-        <><Ch id={'k' + i} name={v} data={ts[v]} url={ts[v].url} /></>))}</div>
+        <><Ch id={'k' + i} tech="TS" name={v} data={ts[v]} url={ts[v].url} /></>))}</div>
 
       <Dividr name="React" />
       <div className={"odd"} style={mystyle}>{k.map((v, i) => (
 
         <><Ch id={'k' + i} name={v}
           // data={rt[v]}
+          tech="React"
           title={rt[v].title}
           type={rt[v].type == 'topics' ? 'topics' : 'iframe'}
           topics={rt[v].topics}
@@ -83,27 +85,27 @@ export default function Facebook() {
 
       <Dividr name="Front-End" />
       <div className={"even"} style={mystyle}>{f.map((v, i) => (
-        <><Ch id={'k' + i} name={v} data={fr[v]} url={fr[v].url} /></>))}</div>
+        <><Ch id={'k' + i} tech="Front-End" name={v} data={fr[v]} url={fr[v].url} /></>))}</div>
 
       <Dividr name="ReactNative" />
       <div className={"odd"} style={mystyle}>{n.map((v, i) => (
-        <><Ch id={'k' + i} name={v} data={rn[v]} url={rn[v].url} /></>))}</div>
+        <><Ch id={'k' + i} tech="ReactNative" name={v} data={rn[v]} url={rn[v].url} /></>))}</div>
 
       <Dividr name="BackEnd" />
       <div className={"even"} style={mystyle}>{b.map((v, i) => (
-        <><Ch id={'k' + i} name={v} data={bk[v]} url={bk[v].url} /></>))}</div>
+        <><Ch id={'k' + i} tech="BackEnd" name={v} data={bk[v]} url={bk[v].url} /></>))}</div>
 
       <Dividr name="DevOps" />
       <div className={"even"} style={mystyle}>{g.map((v, i) => (
-        <><Ch id={'k' + i} name={v} data={git[v]} url={git[v].url} /></>))}</div>
+        <><Ch id={'k' + i} tech="DevOps" name={v} data={git[v]} url={git[v].url} /></>))}</div>
 
       <Dividr name="Cloud" />
       <div className={"even"} style={mystyle}>{c.map((v, i) => (
-        <><Ch id={'k' + i} name={v} data={cl[v]} url={cl[v].url} /></>))}</div>
+        <><Ch id={'k' + i} tech="Cloud" name={v} data={cl[v]} url={cl[v].url} /></>))}</div>
 
       <Dividr name="DB" />
       <div className={"even"} style={mystyle}>{d.map((v, i) => (
-        <><Ch id={'k' + i} name={v} data={db[v]} url={db[v].url}
+        <><Ch id={'k' + i} tech="DB" name={v} data={db[v]} url={db[v].url}
           data={db[v]}
           title={db[v].title}
           type={db[v].type == 'topics' ? 'topics' : 'iframe'}

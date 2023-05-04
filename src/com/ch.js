@@ -47,9 +47,12 @@ const Ch = function (props) {
   }
 
   let el = (props.type == 'topics' ? <>
-    <h4>{'ALgo->' + props.name}</h4>
-    <Topics tname={props.name} topics={props.topics} />
+    {/* <h4>{props.tech + ' -> ' + props.name}</h4> */}
+    <Topics tname={props.name} topics={props.topics} myTech={props.tech}/>
   </> : <iframe key={key} width={iwidth} height={1000} src={props.url} title="React Tutorials"></iframe>)
+
+
+
 
   return (<>
     <Card onClick={handleOpen}
@@ -75,7 +78,8 @@ const Ch = function (props) {
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-        <div style={{ display: 'block', width: '200', float: 'right' }}>
+        <div style={{display: 'inline-block', width: '300px', float: 'left'}}><h4>{props.tech + ' -> ' + props.name}</h4></div>
+        <div style={{ display: 'inline-block', width: '200', float: 'right' }}>
           <Button sx={{ marginTop: '-5px' }} onClick={() => { (setKey(1 + key)) }} > <Reset color="info" /></Button>
           <Button ><a
             href={props.url}
