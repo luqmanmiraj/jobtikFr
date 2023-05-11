@@ -82,10 +82,27 @@ export default function Facebook() {
           // data={rt[v]}
           url={rt[v].url} /></>))}</div>
 
-
+{/* name={v} data={fr[v]} url={fr[v].url} */}
+ {/* <><Ch id={'k' + i} tech="Front-End" name={v} data={fr[v]} url={fr[v].url} /></>))}</div> */}
       <Dividr name="Front-End" />
       <div className={"even"} style={mystyle}>{f.map((v, i) => (
-        <><Ch id={'k' + i} tech="Front-End" name={v} data={fr[v]} url={fr[v].url} /></>))}</div>
+       
+        
+
+        <>
+        {console.log("v")}
+        {console.log(fr[v])}
+        {console.log(fr[v].type)}
+        <Ch id={'k' + i} name={v}
+        tech="Front End"
+        title={fr[v].title}
+        type={fr[v].type == 'topics' ? 'topics' : 'iframe'}
+        topics={fr[v].topics}
+        url={fr[v].url}
+         /></>))}</div>
+
+
+
 
       <Dividr name="ReactNative" />
       <div className={"odd"} style={mystyle}>{n.map((v, i) => (
