@@ -21,18 +21,16 @@ export default function BasicPopover(props) {
     const [updateID, setUpdateID] = React.useState(0);
     const [showModal, setShowModal] = React.useState(false);
 
-
-
     // const [open, setOpen] = react.useState(false)
 
 
     const handleClick = (event) => {
         setShowModal(true)
         setAnchorEl(event.currentTarget);
-        console.log("propssss")
-        console.log(props)
+        // console.log("propssss")
+        // console.log(props)
         axios
-            .get("http://localhost:8080/api/tutorials?title=" + props.val)
+            .get("http://localhost:8080/api/tutorials?title=" + props.val +"&tech="+ props.val1)
             .then(response => {
                 console.log(response.data);
                 setContent(response.data[0].html)

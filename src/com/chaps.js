@@ -94,7 +94,7 @@ export default function Facebook() {
         {console.log(fr[v])}
         {console.log(fr[v].type)}
         <Ch id={'k' + i} name={v}
-        tech="Front End"
+        tech="Front-End"
         title={fr[v].title}
         type={fr[v].type == 'topics' ? 'topics' : 'iframe'}
         topics={fr[v].topics}

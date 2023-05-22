@@ -24,9 +24,13 @@ import axios from 'axios';
 import Topics from './searcTopics';
 import Chgpt from './gpt';
 import Goo from './goo';
+import {useState, useRef, useEffect} from 'react';
+import { SSE } from "sse.js"
+import { API_KEY } from './envm';
+
 export default function BasicModal(props) {
 
-
+    // const API_KEY = "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";
 
     const [open, setOpen] = React.useState(true);
     const handleOpen = () => setOpen(true);
@@ -43,6 +47,97 @@ export default function BasicModal(props) {
     let [goo, setGoo] = React.useState('');
     let [minmized, setMinmized] = React.useState(false);
 
+    let [prompt, setPrompt] = useState("");
+    let [isLoading, setIsLoading] = useState("false");
+    let [result, setResult] = useState("");
+  
+    const resultRef = useRef();
+  
+    useEffect(()=>{
+      resultRef.current = result;
+    }, [result]);
+  
+    let handleClearBtnClicked = () => {
+      setPrompt("");
+      setResult("");
+    };
+  
+    let handleSubmitPromptBtnClicked = async () => {
+
+        
+
+      if(query !== ""){
+        setIsLoading(true);
+        setResult("");
+        let url = "https://api.openai.com/v1/completions";
+        let data = {
+          model: "text-davinci-003",
+          prompt: query,
+          temperature: 0.75,
+          top_p: 0.95,
+          max_tokens: 100,
+          stream: true,
+          n: 1,
+        };
+  
+        let source = new SSE(url, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${API_KEY}`,
+  
+          },
+          method: "POST",
+          payload: JSON.stringify(data)
+        });
+  
+        source.addEventListener("message", (e) =>{
+            console.log("e.data")
+            console.log(e)
+            console.log("e.data")
+          if(e.data !== "[DONE]"){
+            let payload = JSON.parse(e.data);
+            let text = payload.choices[0].text;
+            if(text !== "\n"){
+              console.log("Text: "+ payload);
+              resultRef.current = resultRef.current + text;
+              console.log("ResultRef.current: " + resultRef.current);
+              setResult(resultRef.current);
+              console.log("shhhhh");
+              // console.log(result)
+              // console.log("shhhhh");
+             
+            }
+          } else {
+            source.close();
+          }
+        });
+        
+        
+        source.addEventListener("readystatechange", (e) => {
+            console.log("ready state change")
+            console.log(e)
+            console.log("ready state change")
+          if(e.readyState >= 2){
+            setIsLoading(false);
+          }
+        });
+        
+        source.stream();
+  
+  
+      } else{
+        alert("please insert a prompt");
+      }
+
+      search(query);
+
+    };
+  
+    let handlePromptChange = (e) => {
+      let inputValue = e.target.value;
+      setPrompt(inputValue);
+      setQuery(e.target.value);
+    };
 
 
 
@@ -76,10 +171,13 @@ export default function BasicModal(props) {
     };
 
     const findcolor = (v) => {
-        if (v.length > 2 && a[v.charAt(0)].includes(v))
-            return 'red'
-        return chipColor
+     
+        if (v.length > 2 && a[v.charAt(0)].includes(v)){
+            return 'red'}
+        
+        else{    return chipColor
     }
+}
 
     const search = async (q) => {
         console.log('searched query ->' + q);
@@ -158,7 +256,13 @@ export default function BasicModal(props) {
                     <Button sx={{ position: 'absolute', right: '80px', top: '20px' }} onClick={() => { setWidth(width + 500) }}><Google /></Button></>)}
                 <TextareaAutosize
                     onChange={(e) => {
-                        setWords(Array.from(new Set(e.target.value.split(' '))))
+                        console.log("strrrrrrrrrrrrr")
+                        let val = e.target.value;
+                        // let valAr = val.trim()
+                        console.log(new Set(e.target.value.trim().split(' ')))
+                        console.log("Array.from(new Set(e.target.value.trim.split(' ')))")
+                        console.log(Array.from(new Set(e.target.value.trim().split(' '))))
+                        setWords(Array.from(new Set(e.target.value.split(' '))));
                     }}
                     aria-label="minimum height"
                     minRows={2}
@@ -166,6 +270,9 @@ export default function BasicModal(props) {
                     placeholder="Speech text"
                     style={{ width: width - 40, fontSize: '20px', letterSpacing: '0.06em', marginTop: '60px', paddingLeft: '10px', paddingTop: '5px' }}
                 />
+                {console.log("words1111")}
+                {console.log(words)}
+
                 <Typography sx={{ color: '#333' }} id="modal-modal-title" variant="h6" component="h1">
                     Search keywords
                 </Typography>
@@ -183,15 +290,20 @@ export default function BasicModal(props) {
                     })}
                     {words.map(v => {
                         return (<Chip
-                            sx={{ color: () => findcolor(v), fontSize: '18px', letterSpacing: '0.06em', m: 1 }}
+                            sx={{ /*color: () => findcolor(v),*/ fontSize: '18px', letterSpacing: '0.06em', m: 1 }}
                             label={v}
-                            onClick={() => { setQuery(query + ' ' + v); setChipColor('green') }}
+                            
+                            onClick={() => { setQuery(query + ' ' + v);  setChipColor('green') }}
                             // onDelete={handleDelete}
                             onContextMenu={() => { searchTopic(v) }}
 
                         />)
 
                     })}
+                    {
+                        console.log("query words")}
+                        {console.log(query)
+                    }
 
                 </Box>
                 <Typography id="modal-modal-title" variant="h6" component="h2">
@@ -207,13 +319,14 @@ export default function BasicModal(props) {
                     </IconButton>
                     <InputBase
                         sx={{ ml: 1, flex: 1 }}
-                        placeholder="Query"
+                        placeholder="Insert your prompt here..."
                         inputProps={{ 'aria-label': 'Query' }}
-                        onChange={(e) => { setQuery(e.target.value) }}
+                        // onChange={(e) => { handlePromptChange(); setQuery(e.target.value);  }}
+                        onChange={(e)=>{handlePromptChange(e)}}
                         value={query}
                         onKeyPress={(e) => { if (e.key === 'enter') { e.preventDefault(); e.stopPropagation(); search(query); } }}
                     />
-                    <IconButton onClick={() => { search(query) }} type="button" sx={{ p: '10px' }} aria-label="search">
+                    <IconButton /*onClick={() => { search(query); handleSubmitPromptBtnClicked(); }}*/ onClick={handleSubmitPromptBtnClicked} isLoading={isLoading} type="button" sx={{ p: '10px' }} aria-label="search">
                         <SearchIcon />
                     </IconButton>
                     <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
@@ -224,7 +337,12 @@ export default function BasicModal(props) {
                 {topicContent.length >= 1 ? <Topics tar={topicContent} /> : <></>}
                 {goo.length >= 2 ? <Goo goo={goo} /> : <></>}
 
-                {chgp.length >= 2 ? <Chgpt gpt={chgp} /> : <></>}
+                {/* {chgp.length >= 2 ? <Chgpt gpt={chgp} /> : <></>} */}
+
+                <div>
+      <h1>ChatGPT: </h1>
+      <p>{result}</p>
+    </div>
 
 
                 {/* <TextField onChange={(e) => { setQuery(e.target.value) }} value={query} fullWidth label="Query" id="fullWidth" /> */}

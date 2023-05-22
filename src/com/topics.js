@@ -16,7 +16,7 @@ export default function topics1(props) {
 
           return (
             <>
-              <Pop ptname={props.tname} val={v} ind={i} tech={props.myTech}/>
+              <Pop ptname={props.tname} val={v} val1={props.myTech}  ind={i} tech={props.myTech}/>
               {/* <Card
                 key={'topics' + i}
                 sx={{ minWidth: 180, maxWidth: 180, m: 2, display: 'inline-block' }}>
