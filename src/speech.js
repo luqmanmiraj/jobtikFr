@@ -2,16 +2,12 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Popover from '@mui/material/Popover';
 import Chip from '@mui/material/Chip';
 import Reset from '@mui/icons-material/MinimizeRounded';
 import Exapnd from '@mui/icons-material/NorthWest';
 import Gpt from '@mui/icons-material/SearchRounded';
 import Google from '@mui/icons-material/Google';
-import TextField from '@mui/material/TextField';
-// import Widen from '@mui/icons-material/';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
-import Chipss from './chips';
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import Divider from '@mui/material/Divider';
@@ -19,10 +15,9 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import DirectionsIcon from '@mui/icons-material/Directions';
-import a from '../src//topics/artopics'
+// import a from '../src//topics/artopics'
 import axios from 'axios';
 import Topics from './searcTopics';
-import Chgpt from './gpt';
 import Goo from './goo';
 import {useState, useRef, useEffect} from 'react';
 import { SSE } from "sse.js"
@@ -30,37 +25,74 @@ import { API_KEY } from './envm';
 
 export default function BasicModal(props) {
 
-    // const API_KEY = "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";
+   
 
-    const [open, setOpen] = React.useState(true);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    // const [open, setOpen] = React.useState(true);
+    // const handleOpen = () => setOpen(true);
+    // const handleClose = () => setOpen(false);
     let [width, setWidth] = React.useState(500)
     let [height, setHeight] = React.useState(600);
-    let [key, setKey] = React.useState();
+    // let [key, setKey] = React.useState();
     let [overf, setOverf] = React.useState('scroll')
     let [words, setWords] = React.useState([]);
     let [query, setQuery] = React.useState('');
     let [chipColor, setChipColor] = React.useState('black');
     let [topicContent, setTopicContent] = React.useState([]);
-    let [chgp, setChgp] = React.useState('');
+    // let [chgp, setChgp] = React.useState('');
     let [goo, setGoo] = React.useState('');
     let [minmized, setMinmized] = React.useState(false);
 
-    let [prompt, setPrompt] = useState("");
+    // let [prompt, setPrompt] = useState("");
     let [isLoading, setIsLoading] = useState("false");
     let [result, setResult] = useState("");
   
     const resultRef = useRef();
+
+    // for chatgpt code
+    const [completion, setCompletion] = useState([]);
+
+
+
+    const handleCompletion = async () => {
+        const response = await fetch('https://api.openai.com/v1/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${API_KEY}`,
+          },
+          body: JSON.stringify({
+            model: 'text-davinci-003',
+            prompt: "Please write code for " + query,
+            max_tokens: 250,
+            temperature: 0.7
+          })
+        });
+    
+        const data = await response.json();
+    
+        console.log("queryyyyyyyyyyyyyyyyyy")
+        console.log(API_KEY)
+
+        let resp=[];
+    
+        let lines = data.choices[0].text;
+        resp= lines.split('\n');
+    
+    
+        setCompletion(resp);
+        console.log(completion)
+      };
+
+
+
+
+
   
     useEffect(()=>{
       resultRef.current = result;
     }, [result]);
   
-    let handleClearBtnClicked = () => {
-      setPrompt("");
-      setResult("");
-    };
+
   
     let handleSubmitPromptBtnClicked = async () => {
 
@@ -134,8 +166,7 @@ export default function BasicModal(props) {
     };
   
     let handlePromptChange = (e) => {
-      let inputValue = e.target.value;
-      setPrompt(inputValue);
+      
       setQuery(e.target.value);
     };
 
@@ -170,14 +201,14 @@ export default function BasicModal(props) {
         marginTop: '10px'
     };
 
-    const findcolor = (v) => {
+    // const findcolor = (v) => {
      
-        if (v.length > 2 && a[v.charAt(0)].includes(v)){
-            return 'red'}
+    //     if (v.length > 2 && a[v.charAt(0)].includes(v)){
+    //         return 'red'}
         
-        else{    return chipColor
-    }
-}
+    //     else{    return chipColor
+    // }
+// }
 
     const search = async (q) => {
         console.log('searched query ->' + q);
@@ -186,7 +217,7 @@ export default function BasicModal(props) {
         console.log('google resulr')
         setGoo('')
         setTopicContent('')
-        setChgp(' ')
+        // setChgp(' ')
 
         axios
             .get("http://localhost:8080/api/chat/google?query=" + q, { query: q })
@@ -206,13 +237,13 @@ export default function BasicModal(props) {
 
             .then(response => {
                 console.log(response.data)
-                setChgp(response.data)
+                // setChgp(response.data)
 
 
             })
             .catch(err => {
                 console.log("not found" + err);
-                setChgp('Not found')
+                // setChgp('Not found')
 
             })
     }
@@ -247,6 +278,7 @@ export default function BasicModal(props) {
             <Box
                 sx={style}
             >
+                
                 <Button sx={{ position: 'absolute', left: '0px', top: minmized ? '5px' : '20px' }} onClick={() => { setHeight(height + 700); setWidth(width + 600); setOverf('scroll'); SetShowSearchButtons(true) }}><Exapnd /></Button>
                 {/* {minmized && <Button sx={{ paddingBottom: 1, width: '50px', position: 'absolute', left: '40px', top: minmized ? '0px' : '10px' }} onClick={() => { setWidth(100); setHeight(30); setOverf('hidden'); SetShowSearchButtons(false); setMinmized(true) }}><Reset /></Button>} */}
                 {/* <Button onClick={() => { setWidth(width + 500) }}><Widen /></Button> */}
@@ -257,7 +289,7 @@ export default function BasicModal(props) {
                 <TextareaAutosize
                     onChange={(e) => {
                         console.log("strrrrrrrrrrrrr")
-                        let val = e.target.value;
+                        // let val = e.target.value;
                         // let valAr = val.trim()
                         console.log(new Set(e.target.value.trim().split(' ')))
                         console.log("Array.from(new Set(e.target.value.trim.split(' ')))")
@@ -326,6 +358,10 @@ export default function BasicModal(props) {
                         value={query}
                         onKeyPress={(e) => { if (e.key === 'enter') { e.preventDefault(); e.stopPropagation(); search(query); } }}
                     />
+                    <IconButton /*onClick={() => { search(query); handleSubmitPromptBtnClicked(); }}*/ onClick={handleCompletion} isLoading={isLoading} type="button" sx={{ p: '10px' }} aria-label="search">
+                        <SearchIcon />
+                    </IconButton>
+                    <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
                     <IconButton /*onClick={() => { search(query); handleSubmitPromptBtnClicked(); }}*/ onClick={handleSubmitPromptBtnClicked} isLoading={isLoading} type="button" sx={{ p: '10px' }} aria-label="search">
                         <SearchIcon />
                     </IconButton>
@@ -342,6 +378,7 @@ export default function BasicModal(props) {
                 <div>
       <h1>ChatGPT: </h1>
       <p>{result}</p>
+      <p style={{textAlign:"left"}}>{ <ul>{completion.map(x => <li style={{listStyleType:"none"}}>{x}</li> )}</ul>}</p>
     </div>
 
 

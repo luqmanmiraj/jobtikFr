@@ -11,6 +11,7 @@ import cl from '../teks/cloud';
 import db from '../teks/db';
 import ts from '../teks/ts';
 import Dividr from './divider';
+import py from '../teks/belgo'
 
 
 import Divider from '@mui/material/Divider';
@@ -39,18 +40,51 @@ export default function Facebook() {
   let d = Object.keys(db).sort((a, b) => a.localeCompare(b))
   let t = Object.keys(ts).sort((a, b) => a.localeCompare(b))
 
+  const [showJs, setShowJs] = React.useState(true);
+  const [showPy, setShowPy] = React.useState(false);
+  // const [showJs, setShowJs] = React.useState(js);
+
+
+
+  const handleLabelChange = (newLabel) => {
+    if(newLabel=='py'){
+    setShowJs(false);
+    setShowPy(true);
+    }
+    if(newLabel=='js'){
+      setShowJs(true);
+      setShowPy(false);
+    }
+
+};
 
 
 
 
 
+console.log("jsjsjsjs : " + showJs)
+console.log("pypypypy : " + showPy)
 
   let j = Object.keys(js).sort((a, b) => a.localeCompare(b))
+  let p = Object.keys(py).sort((a, b) => a.localeCompare(b))
+
+
   let ar = [j, k];
   // console.log(rt)
+
+
+
+
+
+  
   return (
+    
     <>
-      <Dividr name="algo" />
+ 
+      <Dividr  name="algo" Tame="JS" abc={handleLabelChange}/>
+
+    {(showJs) &&
+      
       <div className={"even"} style={mystyle}>
         {j.map((v, i) => (
           <>
@@ -65,6 +99,34 @@ export default function Facebook() {
           </>
         ))}
       </div>
+      
+      
+    }
+
+    {(showPy) &&
+
+      <div className={"even"} style={mystyle}>
+        {p.map((v, i) => (
+          <>
+            <Ch id={'p' + i} name={v}
+              tech="Algo"
+              data={rt[v]}
+              title={py[v].title}
+              type={py[v].type == 'topics' ? 'topics' : 'iframe'}
+              topics={py[v].topics}
+              url={(py[v].url).length > 1 ? py[v].url : "https://docs.google.com/document/d/e/2PACX-1vQ7g4x84LU2rc1o6su8ssSTXCXU2fPo7pguSyBO_QIqI08bcL0sr1FifQlwiepKpuwlPjm_9TL3SpjP/pub?embedded=true"} />
+
+          </>
+        ))}
+      </div>
+      
+      
+    }
+
+
+   
+
+   
 
       <Dividr name="TS" />
       <div className={"odd"} style={mystyle}>{t.map((v, i) => (
