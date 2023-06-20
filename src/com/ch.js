@@ -28,6 +28,7 @@ const Ch = function (props) {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: iwidth + 100,
+    height: '80vh',
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -49,7 +50,7 @@ const Ch = function (props) {
   let el = (props.type == 'topics' ? <>
     {/* <h4>{props.tech + ' -> ' + props.name}</h4> */}
     <Topics tname={props.name} topics={props.topics} myTech={props.tech}/>
-  </> : <iframe key={key} width={iwidth} height={1000} src={props.url} title="React Tutorials"></iframe>)
+  </> : <iframe key={key} width={iwidth} height={'94%'} src={props.url} title="React Tutorials"></iframe>)
 
 
 

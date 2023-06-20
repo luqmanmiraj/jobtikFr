@@ -1,4 +1,5 @@
 const ts = {
+    
     'Generics': { title: '', url: '', des: '' },
     'Interfaces': { title: '', url: '', des: '' },
     'TS vs Js': { title: '', url: '', des: '' },
