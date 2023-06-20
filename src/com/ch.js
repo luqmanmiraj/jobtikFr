@@ -11,9 +11,11 @@ import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 
 import Topics from './topics'
+import { WindowSharp } from '@mui/icons-material';
 const Ch = function (props) {
   let [width, setWidth] = React.useState(180)
   let [iwidth, setIwidth] = React.useState(1190)
+  const [screenHeight, setScreenHeight] = React.useState(window.innerHeight);
 
   let [key, setKey] = React.useState(1)
   const [open, setOpen] = React.useState(false);
@@ -21,14 +23,26 @@ const Ch = function (props) {
   const handleClose = () => setOpen(false);
 
 
-  React.useEffect(() => { }, [])
+  React.  useEffect(() => {
+    // Update screen size when the window is resized
+    const handleResize = () => {
+      setScreenHeight(window.innerHeight);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+
   const style = {
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: iwidth + 100,
-    height: '80vh',
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -50,7 +64,7 @@ const Ch = function (props) {
   let el = (props.type == 'topics' ? <>
     {/* <h4>{props.tech + ' -> ' + props.name}</h4> */}
     <Topics tname={props.name} topics={props.topics} myTech={props.tech}/>
-  </> : <iframe key={key} width={iwidth} height={'94%'} src={props.url} title="React Tutorials"></iframe>)
+  </> : <iframe key={key} width={iwidth} height={screenHeight-200} src={props.url} title="React Tutorials"></iframe>)
 
 
 
