@@ -15,6 +15,8 @@ import { WindowSharp } from '@mui/icons-material';
 const Ch = function (props) {
   let [width, setWidth] = React.useState(180)
   let [iwidth, setIwidth] = React.useState(1190)
+  let [iiwidth, setIiwidth] = React.useState(iwidth)
+  
   const [screenHeight, setScreenHeight] = React.useState(window.innerHeight);
 
   let [key, setKey] = React.useState(1)
@@ -23,10 +25,16 @@ const Ch = function (props) {
   const handleClose = () => setOpen(false);
 
 
-  React.  useEffect(() => {
+
+
+
+  React.useEffect(() => {
     // Update screen size when the window is resized
     const handleResize = () => {
       setScreenHeight(window.innerHeight);
+      // if(window.innerWidth< 1190){
+      //   setIwidth('90%');
+      // }
     };
 
     window.addEventListener('resize', handleResize);
@@ -42,7 +50,7 @@ const Ch = function (props) {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: iwidth + 100,
+    width: iwidth ,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -92,7 +100,7 @@ const Ch = function (props) {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Box sx={style}>
+      <Box sx={style} className="widthStyleClass">
         <div style={{display: 'inline-block', width: '300px', float: 'left'}}><h4>{props.tech + ' -> ' + props.name}</h4></div>
         <div style={{ display: 'inline-block', width: '200', float: 'right' }}>
           <Button sx={{ marginTop: '-5px' }} onClick={() => { (setKey(1 + key)) }} > <Reset color="info" /></Button>

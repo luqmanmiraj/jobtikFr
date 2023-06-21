@@ -58,3 +58,13 @@ pre {
   margin: 17px;
   background: azure;
 }
+
+
+@media only screen and (max-width: 1190px) {
+.widthStyleClass iframe{
+  width: 100%;
+}
+.widthStyleClass{
+width: 90% !important;
+}  
+}
