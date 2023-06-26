@@ -10,7 +10,20 @@ const bk = {
     'Laravel cs': { title: '', url: 'https://learninglaravel.net/cheatsheet/', des: '' },
     'laravel': { title: '', url: 'https://www.tutorialspoint.com/laravel/index.htm', des: '' },
     'Wordpress cs': { title: '', url: 'https://overapi.com/wordpress', des: '' },
-    'PHP ': { title: '', url: 'https://www.tutorialspoint.com/php/index.htm', des: '' },
+
+    //Adding topics in PHP
+    
+    'PHP ': { title: '', url: 'https://www.tutorialspoint.com/php/index.htm',
+    
+    type : 'topics',
+    //php topics:
+    topics : [{
+
+        cat : 'All', val : ['Overview', 'Environment Setup', 'Syntax Overview', 'Variable Types', 'Constants', 'Operator Types', 'Decision Making', 'Loop Types', 'Arrays', 'Strings', 'Web Concepts', 'GET & POST Methods', 'File Inclusion', 'Files & I/O', 'Functions', 'Cookies', 'Sessions', 'Sending Emails', 'File Uploading', 'Coding Standard', 'Predefined Variables', 'Regular Expressions', 'Error Handling', 'Bugs Debugging', 'Date & Time', 'Object Oriented', 'Error Reporting', 'Exception Handling', 'and AJAX', 'Magic Methods', 'Final Keyword', 'Traits', 'Constructor & Destructor', 'Static Keyword', 'Class Constants', 'Class Autoloading', 'JSON Parsing', 'Type Hin','Forms','Frameworks', 'Design Patterns', 'PHP Useful Resources',
+        ]
+    }],
+
+    des: '' },
     'Electron cs': { title: '', url: 'https://simulatedgreg.github.io/electron-cheatsheet/', des: '' },
     'VS': { title: '', url: 'https://visualstudio.microsoft.com/keyboard-shortcuts.pdf', des: '' },
     'Electron ': { title: '', url: 'https://www.tutorialspoint.com/electron/index.htm', des: '' },
