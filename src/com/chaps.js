@@ -9,12 +9,15 @@ import fr from '../teks/fr'
 import bk from '../teks/bk'
 import cl from '../teks/cloud';
 import db from '../teks/db';
-import ts from '../teks/ts';
 import Dividr from './divider';
+import algopy from '../teks/algopy';
+
+ import style from './chaps.css'
 
 
-import Divider from '@mui/material/Divider';
-import { useSlotProps } from '@mui/base';
+ import Divider from '@mui/material/Divider';
+ import { useSlotProps } from '@mui/base';
+import Ap from '../teks/algopy';
 
 
 const mystyle = {
@@ -30,6 +33,7 @@ const mystyle = {
 export default function Facebook() {
 
   const [oddEven, setOddeven] = React.useState('even');
+
   let k = Object.keys(rt).sort((a, b) => a.localeCompare(b))
   let g = Object.keys(git).sort((a, b) => a.localeCompare(b))
   let n = Object.keys(rn).sort((a, b) => a.localeCompare(b))
@@ -37,7 +41,7 @@ export default function Facebook() {
   let b = Object.keys(bk).sort((a, b) => a.localeCompare(b))
   let c = Object.keys(cl).sort((a, b) => a.localeCompare(b))
   let d = Object.keys(db).sort((a, b) => a.localeCompare(b))
-  let t = Object.keys(ts).sort((a, b) => a.localeCompare(b))
+  
 
 
 
@@ -46,18 +50,21 @@ export default function Facebook() {
 
 
   let j = Object.keys(js).sort((a, b) => a.localeCompare(b))
-  let ar = [j, k];
   // console.log(rt)
   return (
     <>
-      <Dividr name="algo" />
+    <br />
+    <br />
+    <br />
+      <Dividr id="algo" name="algo" />
       <div className={"even"} style={mystyle}>
         {j.map((v, i) => (
           <>
             <Ch id={'j' + i} name={v}
+              tech="Algo"
               data={rt[v]}
               title={js[v].title}
-              type={js[v].type == 'topics' ? 'topics' : 'iframe'}
+              type={js[v].type === 'topics' ? 'topics' : 'iframe'}
               topics={js[v].topics}
               url={(js[v].url).length > 1 ? js[v].url : "https://docs.google.com/document/d/e/2PACX-1vQ7g4x84LU2rc1o6su8ssSTXCXU2fPo7pguSyBO_QIqI08bcL0sr1FifQlwiepKpuwlPjm_9TL3SpjP/pub?embedded=true"} />
 
@@ -65,48 +72,86 @@ export default function Facebook() {
         ))}
       </div>
 
-      <Dividr name="TS" />
-      <div className={"odd"} style={mystyle}>{t.map((v, i) => (
-        <><Ch id={'k' + i} name={v} data={ts[v]} url={ts[v].url} /></>))}</div>
-
-      <Dividr name="React" />
+      <Dividr id='react' name="Algo-Python" />
       <div className={"odd"} style={mystyle}>{k.map((v, i) => (
 
         <><Ch id={'k' + i} name={v}
           // data={rt[v]}
+          tech="React"
           title={rt[v].title}
-          type={rt[v].type == 'topics' ? 'topics' : 'iframe'}
+          type={rt[v].type === 'topics' ? 'topics' : 'iframe'}
+          topics={rt[v].topics}
+          // data={rt[v]}
+          url={rt[v].url} /></>))}</div>
+
+      
+
+      <br />
+      <Dividr id='react' name="React" />
+      <div className={"odd"} style={mystyle}>{k.map((v, i) => (
+
+        <><Ch id={'k' + i} name={v}
+          // data={rt[v]}
+          tech="React"
+          title={rt[v].title}
+          type={rt[v].type === 'topics' ? 'topics' : 'iframe'}
           topics={rt[v].topics}
           // data={rt[v]}
           url={rt[v].url} /></>))}</div>
 
 
-      <Dividr name="Front-End" />
+      <Dividr id="frontend" name="Front-End" />
       <div className={"even"} style={mystyle}>{f.map((v, i) => (
-        <><Ch id={'k' + i} name={v} data={fr[v]} url={fr[v].url} /></>))}</div>
+        <><Ch id={'k' + i}
+          tech="Front-End"
+          title={fr[v].title}
+          type={fr[v].type === 'topics' ? 'topics' : 'iframe'}
+          topics={fr[v].topics}
 
-      <Dividr name="ReactNative" />
-      <div className={"odd"} style={mystyle}>{n.map((v, i) => (
-        <><Ch id={'k' + i} name={v} data={rn[v]} url={rn[v].url} /></>))}</div>
+          name={v} data={fr[v]}
+          url={fr[v].url} /></>))}</div>
 
-      <Dividr name="BackEnd" />
+      <Dividr id='reactnative' name="ReactNative" />
+      <div className={"odd"}  style={mystyle}>{n.map((v, i) => (
+        <><Ch id={'k' + i} 
+        tech="ReactNative"
+        title={rn[v].title}
+        type={rn[v].type === 'topics' ? 'topics' : 'iframe'}
+        topics={rn[v].topics}
+         name={v} data={rn[v]} 
+         url={rn[v].url} /></>))}</div>
+
+
+      <Dividr id="backend" name="BackEnd" />
       <div className={"even"} style={mystyle}>{b.map((v, i) => (
-        <><Ch id={'k' + i} name={v} data={bk[v]} url={bk[v].url} /></>))}</div>
+        <><Ch id={'k' + i} tech="BackEnd"
+          title={bk[v].title}
+          type={bk[v].type === 'topics' ? 'topics' : 'iframe'}
+          topics={bk[v].topics}
+          name={v} data={bk[v]}
+          url={bk[v].url} /></>))}
 
-      <Dividr name="DevOps" />
-      <div className={"even"} style={mystyle}>{g.map((v, i) => (
-        <><Ch id={'k' + i} name={v} data={git[v]} url={git[v].url} /></>))}</div>
+      </div>
 
-      <Dividr name="Cloud" />
+      <Dividr id='devops' name="DevOps" />
+      <div className={"odd"} style={mystyle}>{g.map((v, i) => (
+        <><Ch id={'k' + i} tech="DevOps" name={v} data={git[v]} url={git[v].url} /></>))}</div>
+
+      <Dividr id='cloud' name="Cloud" />
       <div className={"even"} style={mystyle}>{c.map((v, i) => (
-        <><Ch id={'k' + i} name={v} data={cl[v]} url={cl[v].url} /></>))}</div>
+        <><Ch id={'k' + i} tech="Cloud" 
+        title={cl[v].title}
+        type={cl[v].type === 'topics' ? 'topics' : 'iframe'}
+        topics={cl[v].topics}
+         name={v} data={cl[v]} 
+         url={cl[v].url} /></>))}</div>
 
-      <Dividr name="DB" />
-      <div className={"even"} style={mystyle}>{d.map((v, i) => (
-        <><Ch id={'k' + i} name={v} data={db[v]} url={db[v].url}
+      <Dividr id='db' name="DB" />
+      <div className={"odd"} style={mystyle}>{d.map((v, i) => (
+        <><Ch id={'k' + i} tech="DB" name={v} data={db[v]} url={db[v].url}
           data={db[v]}
           title={db[v].title}
-          type={db[v].type == 'topics' ? 'topics' : 'iframe'}
+          type={db[v].type === 'topics' ? 'topics' : 'iframe'}
           topics={db[v].topics}
 
 
