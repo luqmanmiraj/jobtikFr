@@ -29,6 +29,8 @@ export default function BasicPopover(props) {
     const handleClick = (event) => {
         setShowModal(true)
         setAnchorEl(event.currentTarget);
+        console.log("propssss")
+        console.log(props)
         axios
             .get("http://localhost:8080/api/tutorials?title=" + props.val)
             .then(response => {
@@ -51,7 +53,9 @@ export default function BasicPopover(props) {
             "title": props.val,
             "description": "Description",
             "html": content,
-            "published": "true"
+            "published": "true",
+            "tech": props.tech,
+            "parent": props.ptname
         }
         if (updateID > 0) {
             axios
@@ -120,10 +124,19 @@ export default function BasicPopover(props) {
 
                 <CardHeader style={{ letterSpacing: '0.07em' }}
                     titleTypographyProps={{
-                        variant: 'h6', color: '#222222',
-                        backgroundColor: "", letterSapcing: 5
+                        variant: 'h6', color: '#222222', letterSapcing: 5, display: "flex",
+                        flexDirection: "row", textAlign: 'center', justifyContent: 'center', whiteSpace: 'nowrap',
+                             
+                            
+                            
+                             
+
+
+                        
+                        
+                
+
                     }}
-                    style={{ fontSize: "40px !important" }}
                     title={props.val.charAt(0).toUpperCase() + props.val.slice(1)} />
 
             </Card>
@@ -146,7 +159,11 @@ export default function BasicPopover(props) {
                 </Button>
 
                 {showEditor ? <Editor name="Editor" defaultvalue={content ? content : 'default value'} onChange={(data) => setContent(data)} /> : <>
-                    <Typography sx={{ p: 2, letterSpacing: '0.07em', wordSpacing: '0.05em', minHeight: '700px', minWidth: '800px' }}>
+                    <Typography sx={{ p:2, letterSpacing: '0.07em', wordSpacing: '0.05em', minHeight: '700px', minWidth: '800px',
+                    whiteSpace: 'nowrap',
+                
+                
+                }}>
 
                         <div dangerouslySetInnerHTML={{
                             __html:

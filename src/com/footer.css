@@ -1,0 +1,21 @@
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .copywrite {
+    font-size: 14px;
+  }
+  
+  .copywrite a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .copywrite a:hover {
+    text-decoration: underline;
+  }
+  
