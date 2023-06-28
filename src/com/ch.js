@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 
+
 import Topics from './topics'
 const Ch = function (props) {
   let [width, setWidth] = React.useState(180)
@@ -47,19 +48,22 @@ const Ch = function (props) {
   }
 
   let el = (props.type == 'topics' ? <>
-    <h4>{'ALgo->' + props.name}</h4>
-    <Topics tname={props.name} topics={props.topics} />
+    {/* <h4>{props.tech + ' -> ' + props.name}</h4> */}
+    <Topics tname={props.name} topics={props.topics} myTech={props.tech}/>
   </> : <iframe key={key} width={iwidth} height={1000} src={props.url} title="React Tutorials"></iframe>)
+
+
+
 
   return (<>
     <Card onClick={handleOpen}
       onMouseEnter={mouseEnter}
       onMouseLeave={mouseLeave}
-      sx={{ minWidth: width, maxWidth: width, m: 1 }}>
+      sx={{ minWidth: width, maxWidth: width, m: 1, backgroundColor:"#fff", borderRadius:"5px",}}>
 
       <CardHeader style={{
         letterSpacing: '0.07em'
-      }} titleTypographyProps={{ variant: 'h6', color: '#222222', backgroundColor: "", letterSapcing: 5 }} style={{ fontSize: "40px !important" }} title={props.name.charAt(0).toUpperCase() + props.name.slice(1)} />
+      }} titleTypographyProps={{ variant: 'h6', color: '#222222', backgroundColor: "", letterSapcing: 5, display: "flex", flexDirection: "row", textAlign: 'center', justifyContent: 'center'  }} style={{ fontSize: "40px !important" }} title={props.name.charAt(0).toUpperCase() + props.name.slice(1)} />
       <Typography variant="body2" color="text.secondary" component="p">
         {
           props.title
@@ -75,7 +79,8 @@ const Ch = function (props) {
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-        <div style={{ display: 'block', width: '200', float: 'right' }}>
+        <div style={{display: 'inline-block', width: '300px', float: 'left'}}><h4>{props.tech + ' -> ' + props.name}</h4></div>
+        <div style={{ display: 'inline-block', width: '200', float: 'right' }}>
           <Button sx={{ marginTop: '-5px' }} onClick={() => { (setKey(1 + key)) }} > <Reset color="info" /></Button>
           <Button ><a
             href={props.url}

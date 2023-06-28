@@ -4,16 +4,23 @@ import './App.css';
 import Dictaphone from './speech';
 
 import Rt from './pages/rt'
+import Nav from './com/Nav';
+import Footer from './com/Footer';
+
 function App() {
   return (
     <div className="App">
 
       <header className="App-header">
 
-        <Rt />
+      <Nav />  
+      <Rt />
+      <Footer />
+        
 
       </header>
       <Dictaphone />
+      
 
     </div>
   );

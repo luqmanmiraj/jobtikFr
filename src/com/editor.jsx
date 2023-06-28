@@ -9,6 +9,9 @@ import 'codemirror/mode/htmlmixed/htmlmixed'
 import 'codemirror/lib/codemirror.css'
 import axios from 'axios'
 import { useSlotProps } from '@mui/base'
+import { colors } from '@mui/material'
+import { Highlight } from '@mui/icons-material'
+
 
 const Editor = ({ name, onChange, defaultvalue, props }) => {
     const options = {
@@ -18,7 +21,13 @@ const Editor = ({ name, onChange, defaultvalue, props }) => {
             src: CodeMirror,
             options: {
                 indentWithTabs: true,
-                tabSize: 2
+                tabSize: 4,
+                mode: 'text/html',
+                lineNumbers: true,
+                lineWrapping: true,
+                theme: 'dracula',
+                htmlMode: true,
+                
             }
         },
         katex: katex,
@@ -60,13 +69,17 @@ const Editor = ({ name, onChange, defaultvalue, props }) => {
                 'fullScreen',
                 'showBlocks',
                 'codeView',
-                'preview'
+                'preview',
                 // 'print'
                 // 'save',
                 // 'template'
+
             ]
         ]
+
     }
+
+    
 
     const handleImageUploadBefore = async (files, info, uploadHandler) => {
         // uploadHandler is a function
@@ -132,6 +145,7 @@ const Editor = ({ name, onChange, defaultvalue, props }) => {
             onImageUpload={handleImageUpload}
             onImageUploadError={handleImageUploadError}
             onChange={onChange}
+        
         />
     )
 }
