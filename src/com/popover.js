@@ -21,18 +21,16 @@ export default function BasicPopover(props) {
     const [updateID, setUpdateID] = React.useState(0);
     const [showModal, setShowModal] = React.useState(false);
 
-
-
     // const [open, setOpen] = react.useState(false)
 
 
     const handleClick = (event) => {
         setShowModal(true)
         setAnchorEl(event.currentTarget);
-        console.log("propssss")
-        console.log(props)
+        // console.log("propssss")
+        // console.log(props)
         axios
-            .get("http://localhost:8080/api/tutorials?title=" + props.val)
+            .get("http://localhost:8080/api/tutorials?title=" + props.val +"&tech="+ props.val1)
             .then(response => {
                 console.log(response.data);
                 setContent(response.data[0].html)
@@ -120,29 +118,21 @@ export default function BasicPopover(props) {
                 onMouseLeave={mouseLeave}
                 aria-describedby={id} onClick={handleClick}
                 key={'topics' + props.ind}
-                sx={{ minWidth: 180, maxWidth: 180, m: 2, display: 'inline-block' }}>
+                sx={{ minWidth: 180, maxWidth: 'fitContent', m: 2, display: 'inline-block' }}>
 
                 <CardHeader style={{ letterSpacing: '0.07em' }}
                     titleTypographyProps={{
-                        variant: 'h6', color: '#222222', letterSapcing: 5, display: "flex",
-                        flexDirection: "row", textAlign: 'center', justifyContent: 'center', whiteSpace: 'nowrap',
-                             
-                            
-                            
-                             
-
-
-                        
-                        
-                
-
+                        variant: 'h6', color: '#222222',
+                        backgroundColor: "", letterSapcing: 5
                     }}
+                    style={{ fontSize: "40px !important" }}
                     title={props.val.charAt(0).toUpperCase() + props.val.slice(1)} />
 
             </Card>
 
             <Popover
-                sx={{ p: 2, minWidth: '500px !important', maxWidth: '800px !important', marginLeft: 'auto ', marginRight: 'auto', top: '150px', backgroundColor: '#444', maxHeight: '780px' }}
+                sx={{ p: 2, minWidth: '500px !important', maxWidth: '1100px !important', width:'50%',
+                marginRight: 'auto', top: '100px',  maxHeight: '90%' }}
                 id={id}
                 open={open}
                 onClose={handleClose}
@@ -159,11 +149,7 @@ export default function BasicPopover(props) {
                 </Button>
 
                 {showEditor ? <Editor name="Editor" defaultvalue={content ? content : 'default value'} onChange={(data) => setContent(data)} /> : <>
-                    <Typography sx={{ p:2, letterSpacing: '0.07em', wordSpacing: '0.05em', minHeight: '700px', minWidth: '800px',
-                    whiteSpace: 'nowrap',
-                
-                
-                }}>
+                    <Typography sx={{ p: 2, letterSpacing: '0.07em', wordSpacing: '0.05em', minHeight: '700px' }}>
 
                         <div dangerouslySetInnerHTML={{
                             __html:

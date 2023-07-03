@@ -30,7 +30,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  /* font-size: calc(10px + 2vmin); */
   color: white;
   height: 100%;;
 }
@@ -48,4 +48,24 @@
   to {
     transform: rotate(360deg);
   }
+}
+.hundred{
+  width: 100%;;
+  transition: '500ms',
+
+}
+.leftsidebar{
+  width:65%;
+  transition: '500ms',
+
+
+}
+.rightsidebar{
+  height: 100%;
+  transition: '500ms',
+
+}
+.MuiInputBase-input{
+  /* padding: 8px !important; */
+  border:5px solid 
 }

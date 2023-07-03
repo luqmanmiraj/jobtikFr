@@ -17,7 +17,7 @@ useEffect(() => {
         console.log(e.target.documentElement.scrollTop);
         if(scroll < e.target.documentElement.scrollTop)
         {
-            document.querySelector(".navbar").style.display = "none";
+            // document.querySelector(".navbar").style.display = "none";
 
         }
         else{
@@ -30,12 +30,12 @@ useEffect(() => {
 }, [scroll]);
   return (
     <nav className="navbar" >
-      <div className="navbar-brand">
+      {/* <div className="navbar-brand">
         <a href="/">JobTik</a>
         <button className="navbar-toggle" onClick={toggleNav}>
           <span className="navbar-toggle-icon"></span>
         </button>
-      </div>
+      </div> */}
       <ul className={`navbar-menu ${isNavOpen ? 'open' : ''}`}>
         <li className="navbar-item">
           <a href="#algo">Algo</a>

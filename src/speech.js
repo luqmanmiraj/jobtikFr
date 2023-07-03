@@ -9,7 +9,7 @@ import Exapnd from '@mui/icons-material/NorthWest';
 import Gpt from '@mui/icons-material/SearchRounded';
 import Google from '@mui/icons-material/Google';
 import TextField from '@mui/material/TextField';
-// import Widen from '@mui/icons-material/';
+import Widen from '@mui/icons-material/WidthFull';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import Chipss from './chips';
 import Paper from '@mui/material/Paper';
@@ -24,6 +24,7 @@ import axios from 'axios';
 import Topics from './searcTopics';
 import Chgpt from './gpt';
 import Goo from './goo';
+import { Minimize } from '@mui/icons-material';
 export default function BasicModal(props) {
 
 
@@ -31,8 +32,8 @@ export default function BasicModal(props) {
     const [open, setOpen] = React.useState(true);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    let [width, setWidth] = React.useState(500)
-    let [height, setHeight] = React.useState(600);
+    let [width, setWidth] = React.useState(props.searchwidth+"%")
+    let [height, setHeight] = React.useState(props.searchheight+"%");
     let [key, setKey] = React.useState();
     let [overf, setOverf] = React.useState('scroll')
     let [words, setWords] = React.useState([]);
@@ -58,20 +59,20 @@ export default function BasicModal(props) {
         bottom: '5px !important',
         // top: '89% !important',
 
-        right: '10px !important',
+        right: '0px !important',
         // transform: 'translate(-50%, -50%)',
         width: width,
         bgcolor: 'background.paper',
-        border: '5px solid #777',
-        borderRadius: '10px',
+        border: '1px solid #777',
+        borderRadius: '2px',
         boxShadow: 24,
-        p: 1,
+        // p: 1,
         height: height,
-        maxHeight: '90%',
+        maxHeight: '99%',
         maxWidth: '90%',
         overflow: overf,
         zIndex: 6666,
-        transition: '300ms',
+        transition: '500ms',
         marginTop: '10px'
     };
 
@@ -149,11 +150,12 @@ export default function BasicModal(props) {
             <Box
                 sx={style}
             >
-                <Button sx={{ position: 'absolute', left: '0px', top: minmized ? '5px' : '20px' }} onClick={() => { setHeight(height + 700); setWidth(width + 600); setOverf('scroll'); SetShowSearchButtons(true) }}><Exapnd /></Button>
+                {minmized && <Button sx={{ position: 'absolute', left: '0px', top: minmized ? '-2px' : '20px',color:'#FE5E3D'}} onClick={() => { props.fnsearchwidth('reset');setWidth('30%');setHeight('100%'); setOverf('scroll'); SetShowSearchButtons(true);setMinmized(false) }}><Exapnd /></Button>}
                 {/* {minmized && <Button sx={{ paddingBottom: 1, width: '50px', position: 'absolute', left: '40px', top: minmized ? '0px' : '10px' }} onClick={() => { setWidth(100); setHeight(30); setOverf('hidden'); SetShowSearchButtons(false); setMinmized(true) }}><Reset /></Button>} */}
-                {/* <Button onClick={() => { setWidth(width + 500) }}><Widen /></Button> */}
+               {!minmized && <Button sx={{ position: 'absolute', left: '0px', top: minmized ? '5px' : '10px',color:'#FE5E3D' }} 
+               onClick={() => { props.fnsearchwidth("inc");setWidth( (Number(width.replace("%",""))+10) +"%" )}}><Widen /></Button>}
                 {searchButtons && (<>
-                    <Button sx={{ paddingBottom: 1, width: '50px', position: 'absolute', left: '40px', top: minmized ? '0px' : '10px' }} onClick={() => { setWidth(60); setHeight(30); setOverf('hidden'); SetShowSearchButtons(false); setMinmized(true) }}><Reset /></Button>
+                    <Button sx={{ color:'#FE5E3D',paddingBottom: 1, width: '80px', position: 'absolute', left: '60px', top: minmized ? '0px' : '1px' }} onClick={() => { setWidth(60); setHeight(30); setOverf('hidden'); SetShowSearchButtons(false); setMinmized(true);props.fnsearchwidth('zero'); }}><Reset /></Button>
                     <Button sx={{ position: 'absolute', right: '20px', top: '20px' }} onClick={() => { setWidth(width + 500) }}><Gpt /></Button>
                     <Button sx={{ position: 'absolute', right: '80px', top: '20px' }} onClick={() => { setWidth(width + 500) }}><Google /></Button></>)}
                 <TextareaAutosize
@@ -161,14 +163,14 @@ export default function BasicModal(props) {
                         setWords(Array.from(new Set(e.target.value.split(' '))))
                     }}
                     aria-label="minimum height"
-                    minRows={2}
+                    minRows={4}
                     maxRows={7}
                     placeholder="Speech text"
-                    style={{ width: width - 40, fontSize: '20px', letterSpacing: '0.06em', marginTop: '60px', paddingLeft: '10px', paddingTop: '5px' }}
+                    style={{ width: "97%", fontSize: '20px', letterSpacing: '0.06em', marginTop: '60px', paddingLeft: '10px', paddingTop: '5px' }}
                 />
-                <Typography sx={{ color: '#333' }} id="modal-modal-title" variant="h6" component="h1">
+                {/* <Typography sx={{ color: '#333' }} id="modal-modal-title" variant="h6" component="h1">
                     Search keywords
-                </Typography>
+                </Typography> */}
                 <Box>
                     {pre.map(v => {
                         return (<Chip
@@ -194,15 +196,15 @@ export default function BasicModal(props) {
                     })}
 
                 </Box>
-                <Typography id="modal-modal-title" variant="h6" component="h2">
+                {/* <Typography id="modal-modal-title" variant="h6" component="h2">
                     Searh query
-                </Typography>
+                </Typography> */}
 
                 <Paper
                     component="form"
                     sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '98%' }}
                 >
-                    <IconButton sx={{ p: '10px' }} aria-label="menu">
+                    <IconButton sx={{ p: '10px',color:'#FE5E3D'}} aria-label="menu">
                         <MenuIcon />
                     </IconButton>
                     <InputBase
@@ -213,11 +215,11 @@ export default function BasicModal(props) {
                         value={query}
                         onKeyPress={(e) => { if (e.key === 'enter') { e.preventDefault(); e.stopPropagation(); search(query); } }}
                     />
-                    <IconButton onClick={() => { search(query) }} type="button" sx={{ p: '10px' }} aria-label="search">
+                    <IconButton onClick={() => { search(query) }} type="button" sx={{ p: '10px' ,color:'#FE5E3D'}} aria-label="search">
                         <SearchIcon />
                     </IconButton>
-                    <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-                    <IconButton color="primary" sx={{ p: '10px' }} aria-label="directions">
+                    <Divider sx={{ height: 28, m: 0.5,color:'#FE5E3D' }} orientation="vertical" />
+                    <IconButton color="primary" sx={{ p: '10px',color:'#FE5E3D' }} aria-label="directions">
                         <DirectionsIcon />
                     </IconButton>
                 </Paper>
